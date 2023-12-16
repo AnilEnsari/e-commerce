@@ -2,7 +2,12 @@ import React from "react";
 import trash from "../assets/trash-solid.svg";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { addToList, decraseList } from "../store/actions/shoppingCardActions";
+import {
+  addToList,
+  checkedProduct,
+  decraseList,
+  filteredProduct,
+} from "../store/actions/shoppingCardActions";
 
 export const BigShoppingCardPage = () => {
   const {
@@ -34,10 +39,8 @@ export const BigShoppingCardPage = () => {
                   <input
                     checked={herbiri.checked}
                     className="mx-4"
-                    onChange={(e) => console.log(e.target.value)}
-                    name="Checkbox"
                     type="checkbox"
-                    placeholder="Checkbox"
+                    onClick={() => dispatch(checkedProduct(herbiri))}
                   />
                   <img
                     alt="Resim"
@@ -63,7 +66,11 @@ export const BigShoppingCardPage = () => {
                   >
                     +
                   </button>
-                  <img src={trash} />
+                  <img
+                    onClick={() => dispatch(filteredProduct(herbiri.product))}
+                    alt="dustbin"
+                    src={trash}
+                  />
                 </div>
               </div>
               <div className="flex ml-20 w-[50vw] mt-8 h-[7rem] justify-around">

@@ -3,6 +3,8 @@ export const DELETE_LIST = "DELETE_LIST";
 export const SET_PAYMENT = "SET_PAYMENT";
 export const SET_ADDRESS = "SET_ADDRESS";
 export const DECREASE_LIST = "DECREASE_LIST";
+export const FILTERED_PRODUCT = "FILTERED_PRODUCT";
+export const CHECKED_PRODUCT = "CHECKED_PRODUCT";
 
 export const addToList = (addedProduct) => {
   return { type: SET_LIST, payload: addedProduct };
@@ -15,4 +17,10 @@ export const setAddress = (address) => {
 };
 export const decraseList = (decreasedProduct) => {
   return { type: DECREASE_LIST, payload: decreasedProduct };
+};
+export const filteredProduct = (filteredProduct) => {
+  return { type: FILTERED_PRODUCT, payload: filteredProduct };
+};
+export const checkedProduct = (checkedProduct) => {
+  return { type: CHECKED_PRODUCT, payload: checkedProduct };
 };

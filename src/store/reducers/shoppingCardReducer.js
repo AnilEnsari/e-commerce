@@ -2,8 +2,9 @@ import {
   SET_LIST,
   SET_PAYMENT,
   SET_ADDRESS,
-  INCREASE_COUNTER,
   DECREASE_LIST,
+  FILTERED_PRODUCT,
+  CHECKED_PRODUCT,
 } from "../actions/shoppingCardActions";
 
 const initialState = {
@@ -37,6 +38,22 @@ const shoppingCardReducer = (state = initialState, action) => {
           ],
         };
       }
+    case CHECKED_PRODUCT:
+      const updatedCard = state.card.map((item) => {
+        if (item.product.id === action.payload.product.id) {
+          return {
+            ...item,
+            checked: !item.checked,
+          };
+        }
+        return item;
+      });
+
+      return {
+        ...state,
+        card: updatedCard,
+      };
+
     case SET_PAYMENT:
       return {
         ...state,
@@ -65,6 +82,13 @@ const shoppingCardReducer = (state = initialState, action) => {
           card: updatedCard,
         };
       }
+    case FILTERED_PRODUCT:
+      return {
+        ...state,
+        card: state.card.filter(
+          (cards) => cards.product.id !== action.payload.id
+        ),
+      };
 
     default:
       return state;
