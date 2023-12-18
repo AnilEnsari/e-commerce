@@ -7,39 +7,40 @@ import {
   CHECKED_PRODUCT,
 } from "../actions/shoppingCardActions";
 
+const storedShoppingCard = localStorage.getItem("sepet");
+
 const initialState = {
-  card: [{ count: 0, checked: false, product: {} }],
+  card: storedShoppingCard
+    ? JSON.parse(storedShoppingCard)
+    : [{ count: 0, checked: false, product: {} }],
   payment: {},
   address: {},
 };
 
 const shoppingCardReducer = (state = initialState, action) => {
+  let updatedCard; // Declare it once outside the switch statement
+
   switch (action.type) {
     case SET_LIST:
       const existingProduct = state.card.findIndex(
         (item) => item.product.id === action.payload.id
       );
       if (existingProduct !== -1) {
-        const updatedCard = [...state.card];
+        updatedCard = [...state.card];
         updatedCard[existingProduct] = {
           ...updatedCard[existingProduct],
           count: updatedCard[existingProduct].count + 1,
         };
-        return {
-          ...state,
-          card: updatedCard,
-        };
       } else {
-        return {
-          ...state,
-          card: [
-            ...state.card,
-            { count: 1, checked: true, product: action.payload },
-          ],
-        };
+        updatedCard = [
+          ...state.card,
+          { count: 1, checked: true, product: action.payload },
+        ];
       }
+      break;
+
     case CHECKED_PRODUCT:
-      const updatedCard = state.card.map((item) => {
+      updatedCard = state.card.map((item) => {
         if (item.product.id === action.payload.product.id) {
           return {
             ...item,
@@ -48,28 +49,14 @@ const shoppingCardReducer = (state = initialState, action) => {
         }
         return item;
       });
+      break;
 
-      return {
-        ...state,
-        card: updatedCard,
-      };
-
-    case SET_PAYMENT:
-      return {
-        ...state,
-        payment: action.payload,
-      };
-    case SET_ADDRESS:
-      return {
-        ...state,
-        address: action.payload,
-      };
     case DECREASE_LIST:
       const decreasedProduct = state.card.findIndex(
         (item) => item.product.id === action.payload.id
       );
       if (decreasedProduct !== -1) {
-        const updatedCard = [...state.card];
+        updatedCard = [...state.card];
         updatedCard[decreasedProduct] = {
           ...updatedCard[decreasedProduct],
           count:
@@ -77,22 +64,25 @@ const shoppingCardReducer = (state = initialState, action) => {
               ? updatedCard[decreasedProduct].count - 1
               : 1,
         };
-        return {
-          ...state,
-          card: updatedCard,
-        };
       }
+      break;
+
     case FILTERED_PRODUCT:
-      return {
-        ...state,
-        card: state.card.filter(
-          (cards) => cards.product.id !== action.payload.id
-        ),
-      };
+      updatedCard = state.card.filter(
+        (cards) => cards.product.id !== action.payload.id
+      );
+      break;
 
     default:
       return state;
   }
+
+  localStorage.setItem("sepet", JSON.stringify(updatedCard));
+
+  return {
+    ...state,
+    card: updatedCard,
+  };
 };
 
 export default shoppingCardReducer;
