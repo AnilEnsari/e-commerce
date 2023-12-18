@@ -9,6 +9,7 @@ import {
   filteredProduct,
 } from "../store/actions/shoppingCardActions";
 import OrderSummary from "./OrderSummary";
+import { useHistory } from "react-router-dom";
 
 export const BigShoppingCardPage = () => {
   const {
@@ -19,20 +20,29 @@ export const BigShoppingCardPage = () => {
   const shoppingCard = useSelector((select) => select.shopping.card);
   console.log(shoppingCard);
   const dispatch = useDispatch();
+  const history = useHistory();
+  const onClickHandler = () => {
+    history.goBack();
+  };
 
   return (
     <div className="flex">
-      <div className=" h-screen mx-auto flex flex-col ">
+      <div className=" h-full  flex flex-col">
         <div className="pt-10 font-bold text-center mx-auto text-black text-[2rem]">
           ANIL E-Commerce
         </div>
-
+        <button
+          onClick={() => onClickHandler()}
+          className="text-white font-bold bg-blue-500 px-8 py-4 self-center rounded-lg mt-8"
+        >
+          Go Back
+        </button>
         {shoppingCard.map(
           (herbiri, index) =>
             index >= 1 && (
-              <div key={index} className="flex w-[60rem] mt-24 ml-24">
-                <div className="w-[50vw] h-[7rem] mt-8">
-                  <p className="text-black font-bold mb-5">
+              <div key={index} className="flex w-[50rem] mt-8 mb-4 ml-24">
+                <div className="w-[50vw]  mt-8">
+                  <p className="text-black font-bold">
                     {herbiri.product.name} &{" "}
                     <span className="bg-green-700 text-white font-bold px-1 py-1 rounded-lg">
                       {herbiri.product.rating}
@@ -55,14 +65,16 @@ export const BigShoppingCardPage = () => {
                       {herbiri.product.description}
                     </p>
                   </div>
-                  <div className="flex justify-evenly mt-2">
+                  <div className="flex gap-2 mt-2 justify-end">
                     <button
                       onClick={() => dispatch(decraseList(herbiri.product))}
-                      className="text-white font-bold bg-blue-500 ml-44 px-4 py-2 rounded-md"
+                      className="text-white font-bold bg-blue-500 text-[1.2rem] px-4 py-2 rounded-md"
                     >
                       -
                     </button>
-                    <p className="my-auto">{herbiri.count}</p>
+                    <p className="my-auto text-black font-bold">
+                      {herbiri.count}
+                    </p>
                     <button
                       onClick={() => dispatch(addToList(herbiri.product))}
                       className="text-white font-bold bg-blue-500 px-4 py-2 rounded-md"
@@ -76,11 +88,11 @@ export const BigShoppingCardPage = () => {
                     />
                   </div>
                 </div>
-                <div className="flex ml-20 w-[50vw] mt-14 h-[7rem] justify-around">
+                <div className="flex ml-20 w-[50vw] mt-12 h-[7rem] justify-around">
                   <h1 className="my-auto font-bold text-black">
                     ARAS CARGO : 35₺
                   </h1>
-                  <p className="my-auto -7 text-black font-bold">
+                  <p className="my-auto text-black font-bold">
                     {herbiri.product.price}₺
                   </p>
                 </div>
