@@ -31,19 +31,19 @@ export default function ProductPageQuickFox() {
           the quick fox jumps over{" "}
         </h1>
         <div className="flex pt-4">
-          <img src={sagOk} className="mobile:w-4" />
+          <img src={sagOk} alt="sagok" className="mobile:w-4" />
           <p className="pl-4">the quick fox jumps over the lazy dog</p>
         </div>
         <div className="flex pt-4">
-          <img src={sagOk} className="mobile:w-4" />
+          <img src={sagOk} alt="sagok" className="mobile:w-4" />
           <p className="pl-4">the quick fox jumps over the lazy dog</p>
         </div>
         <div className="flex pt-4">
-          <img src={sagOk} className="mobile:w-4" />
+          <img src={sagOk} alt="sagok" className="mobile:w-4" />
           <p className="pl-4">the quick fox jumps over the lazy dog</p>
         </div>
         <div className="flex pt-4">
-          <img src={sagOk} className="mobile:w-4" />
+          <img src={sagOk} alt="sagok" className="mobile:w-4" />
           <p className="pl-4">the quick fox jumps over the lazy dog</p>
         </div>
         <br />
@@ -53,15 +53,15 @@ export default function ProductPageQuickFox() {
           </p>
         </div>
         <div className="flex pt-4">
-          <img src={sagOk} className="mobile:w-4" />
+          <img src={sagOk} alt="sagok" className="mobile:w-4" />
           <p className="pl-4">the quick fox jumps over the lazy dog</p>
         </div>
         <div className="flex pt-4">
-          <img src={sagOk} className="mobile:w-4" />
+          <img src={sagOk} alt="sagok" className="mobile:w-4" />
           <p className="pl-4">the quick fox jumps over the lazy dog</p>
         </div>
         <div className="flex pt-4">
-          <img src={sagOk} className="mobile:w-4" />
+          <img src={sagOk} alt="sagok" className="mobile:w-4" />
           <p className="pl-4">the quick fox jumps over the lazy dog</p>
         </div>
       </div>

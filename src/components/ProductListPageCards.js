@@ -107,7 +107,7 @@ export default function ProductListPageCards() {
           <ClipLoader size={30} color={"#123abc"} loading={loading} />
         </div>
       </div>
-      /* Page değiştirme yerleri. */
+
       <div className="flex mobile:ml-10 flex-wrap mx-auto mt-10">
         <div className="flex mobile:flex-col  flex-wrap w-[20rem] h-[4.5rem] justify-between border">
           <button className="text-[#BDBDBD] bg-[#F3F3F3] p-[1.56rem] font-semibold">

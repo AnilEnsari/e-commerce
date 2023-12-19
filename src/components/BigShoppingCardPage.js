@@ -12,11 +12,7 @@ import OrderSummary from "./OrderSummary";
 import { useHistory } from "react-router-dom";
 
 export const BigShoppingCardPage = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { register } = useForm();
   const shoppingCard = useSelector((select) => select.shopping.card);
   console.log(shoppingCard);
   const dispatch = useDispatch();
